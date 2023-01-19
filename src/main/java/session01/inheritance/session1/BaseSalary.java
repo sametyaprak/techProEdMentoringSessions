@@ -8,5 +8,6 @@ package session01.inheritance.session1;
 public interface BaseSalary {
 
     int bonusSalary = 500;
+    int calculateSalary();
 
 }

@@ -16,7 +16,7 @@ public class Worker extends BasePerson{
     int baseSalary = 200;
     int age;
 
-    int calculateSalary(){
+    public int calculateSalary(){
         System.out.println("this is worker");
         return baseSalary + bonusSalary;
     }

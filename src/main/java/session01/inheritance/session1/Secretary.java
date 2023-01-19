@@ -11,7 +11,7 @@ public class Secretary extends Worker{
 
 
     @Override
-    int calculateSalary(){
+    public int calculateSalary(){
         System.out.println("this is secretary");
         return baseSalary + bonusSalary;
     }

@@ -8,7 +8,7 @@ public class Manager extends Secretary{
     String projectName;
 
     @Override
-    int calculateSalary(){
+    public int calculateSalary(){
         System.out.println("this is manager");
         return baseSalary + bonusSalary;
     }
