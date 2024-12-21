@@ -34,6 +34,55 @@ public class Runner {
 			throw new RuntimeException(ErrorMessage.EXCEL_REPORT_ERROR_MESSAGE);
 		}
 	}
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    	
+    	http.csrf().disable().//disable etmezseniz POST Yapamazsınız
+    	sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().
+    	authorizeRequests().antMatchers(HttpMethod.OPTIONS,"/**").permitAll().and().
+        authorizeRequests().
+        antMatchers("/register","/login","/files/download/**","/files/display/**"
+        		,"/contactmessage/visitors","/car/visitors/**","/actuator/info","/actuator/health").permitAll().
+        anyRequest().authenticated();
+        
+        http.addFilterBefore(authTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+        
+        return http.build();
+    }
+    
+    @Bean
+	public WebMvcConfigurer corsConfigurer() {
+		return new WebMvcConfigurer() {
+			@Override
+			public void addCorsMappings(CorsRegistry registry) {
+				registry.addMapping("/**").allowedOrigins("*").allowedHeaders("*").allowedMethods("*");
+			}
+		};
+	}
+    
+    
+	private static final String [] AUTH_WHITE_LIST= {
+			"/v3/api-docs/**",
+			"swagger-ui.html",
+			"/swagger-ui/**",
+			"/",
+			"index.html",
+			"/images/**",
+			"/css/**",
+			"/js/**"
+	};
+    
+	@Bean
+	public WebSecurityCustomizer webSecurityCustomizer() {
+		WebSecurityCustomizer customizer=new WebSecurityCustomizer() {
+			@Override
+			public void customize(WebSecurity web) {
+				web.ignoring().antMatchers(AUTH_WHITE_LIST);
+			}
+		};
+		return customizer;
+	}
+
 	public ByteArrayInputStream getCarReport() {
 		List<Car> cars = carService.getAllCar();
 		try {
