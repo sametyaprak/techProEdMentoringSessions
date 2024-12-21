@@ -13,25 +13,6 @@ public class Runner {
         Worker secretary = new Manager();
         //! companySalaryCalculator method call calculateSalary() method but
         //! java does not know which method will be called.(we have overwritten methods)
-			public static Optional<String> getCurrentUserLogin(){
-				SecurityContext securityContext= SecurityContextHolder.getContext();
-				Authentication authentication = securityContext.getAuthentication();
-				return Optional.ofNullable(extractPrincipal(authentication));
-			}
-
-			private static String extractPrincipal(Authentication authentication) {
-				if(authentication==null) {
-					return null;
-				}else if (authentication.getPrincipal() instanceof UserDetails) {
-					UserDetails securedUser= (UserDetails) authentication.getPrincipal();
-					return securedUser.getUsername();
-				}else if(authentication.getPrincipal() instanceof String) {
-					return  (String)authentication.getPrincipal();
-				}
-
-				return null;
-
-			}
         calculator.companySalaryCalculator(secretary);
         if(secretary instanceof Manager ){
             System.out.println("manager");
