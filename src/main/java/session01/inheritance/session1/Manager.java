@@ -9,6 +9,8 @@ public class Manager extends Secretary{
 
     @Override
     public int calculateSalary(){
+
+
         System.out.println("this is manager");
         return baseSalary + bonusSalary;
     }
