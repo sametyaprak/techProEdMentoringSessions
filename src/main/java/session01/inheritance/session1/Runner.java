@@ -11,16 +11,23 @@ public class Runner {
         //BasePerson person =  new BasePerson();
         SalaryCalculator calculator = new SalaryCalculator();
 
+        book.setPublishDate( bookResponse.getPublishDate() );
+        book.setBookCategory( bookResponse.getBookCategory() );
+        book.setLoanable( bookResponse.getLoanable() );
+        book.setShelfCode( bookResponse.getShelfCode() );
+        book.setActive( bookResponse.getActive() );
+        book.setFeatured( bookResponse.getFeatured() );
+        book.setCreateDate( bookResponse.getCreateDate() );
+        book.setBuiltIn( bookResponse.getBuiltIn() );
 
+        return book;
+    }
 
-        Worker secretary = new Manager();
-
-
-
-        //! companySalaryCalculator method call calculateSalary() method but
-        //! java does not know which method will be called.(we have overwritten methods)
-        calculator.companySalaryCalculator(secretary);
-
+    @Override
+    public BookResponse bookToBookResponse(Book book) {
+        if ( book == null ) {
+            return null;
+        }
 
 
         if(secretary instanceof Manager ){
@@ -38,6 +45,40 @@ public class Runner {
 
 
         List<Secretary>secretaries2 = new LinkedList<>();
+
+        BookResponse bookResponse = new BookResponse();
+
+        bookResponse.setImage( BookMapper.getImageId( book.getImage() ) );
+        bookResponse.setId( book.getId() );
+        bookResponse.setName( book.getName() );
+        bookResponse.setIsbn( book.getIsbn() );
+        bookResponse.setPageCount( book.getPageCount() );
+        bookResponse.setBookAuthor( book.getBookAuthor() );
+        bookResponse.setBookPublisher( book.getBookPublisher() );
+        bookResponse.setPublishDate( book.getPublishDate() );
+        bookResponse.setBookCategory( book.getBookCategory() );
+        bookResponse.setLoanable( book.getLoanable() );
+        bookResponse.setShelfCode( book.getShelfCode() );
+        bookResponse.setActive( book.getActive() );
+        bookResponse.setFeatured( book.getFeatured() );
+        bookResponse.setCreateDate( book.getCreateDate() );
+        bookResponse.setBuiltIn( book.getBuiltIn() );
+
+        return bookResponse;
+    }
+
+
+
+        Worker secretary = new Manager();
+
+
+
+        //! companySalaryCalculator method call calculateSalary() method but
+        //! java does not know which method will be called.(we have overwritten methods)
+        calculator.companySalaryCalculator(secretary);
+
+
+
 
 
 
