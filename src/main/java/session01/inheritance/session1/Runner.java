@@ -10,25 +10,10 @@ public class Runner {
         //we can not create an object
         //BasePerson person =  new BasePerson();
         SalaryCalculator calculator = new SalaryCalculator();
-
-        book.setPublishDate( bookResponse.getPublishDate() );
-        book.setBookCategory( bookResponse.getBookCategory() );
-        book.setLoanable( bookResponse.getLoanable() );
-        book.setShelfCode( bookResponse.getShelfCode() );
-        book.setActive( bookResponse.getActive() );
-        book.setFeatured( bookResponse.getFeatured() );
-        book.setCreateDate( bookResponse.getCreateDate() );
-        book.setBuiltIn( bookResponse.getBuiltIn() );
-
-        return book;
-    }
-
-    @Override
-    public BookResponse bookToBookResponse(Book book) {
-        if ( book == null ) {
-            return null;
-        }
-
+        Worker secretary = new Manager();
+        //! companySalaryCalculator method call calculateSalary() method but
+        //! java does not know which method will be called.(we have overwritten methods)
+        calculator.companySalaryCalculator(secretary);
 
         if(secretary instanceof Manager ){
             System.out.println("manager");
@@ -36,14 +21,9 @@ public class Runner {
             System.out.println("secretary");
         } else  if(secretary instanceof Worker ){
             System.out.println("worker");
-
-
         }
         //polymorphism examples in core java library.
         List<Secretary>secretaries1 = new ArrayList<>();
-
-
-
         List<Secretary>secretaries2 = new LinkedList<>();
 
         BookResponse bookResponse = new BookResponse();
@@ -77,14 +57,7 @@ public class Runner {
         //! java does not know which method will be called.(we have overwritten methods)
         calculator.companySalaryCalculator(secretary);
 
-
-
-
-
-
         List<Secretary>secretaries3 = new Vector<>();
-
-
 
     }
 }
