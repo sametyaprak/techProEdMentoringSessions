@@ -34,8 +34,16 @@ public class Runner {
         }
         //polymorphism examples in core java library.
         List<Secretary>secretaries1 = new ArrayList<>();
+
+
+
         List<Secretary>secretaries2 = new LinkedList<>();
+
+
+
         List<Secretary>secretaries3 = new Vector<>();
+
+
 
     }
 }
